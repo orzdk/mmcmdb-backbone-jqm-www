@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minecraft Mod Database</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="js/libs/jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all"/>
+
+	<script type="text/javascript" src="js/libs/PushNotification.js"></script>
+    <script type="text/javascript" src="js/libs/cordova/cordova-android-2.9.1.js"></script>
+    <script data-main="js/main" src="js/libs/require/require.js"></script>
+
+</head>
+
+<script>
+function onNotification(result) {
+	alert(result);
+    alert(result.regid);
+	
+	$.ajax({
+		url: 'http://orz.dk:5000/mcapi/rrid/' + result.regid,			
+		type: 'GET'
+	});
+}
+</script>
+
+<script type="text/template" id="_moditem">
+	<a class='ui-btn ui-btn-icon-right ui-icon-carat-r' href='#'><%= item.modname %></a>
+</script>
+
+<script type="text/template" id="_home">
+	<div data-role="header" data-position="fixed">
+		<h1>Minecraft Moddatabase - Home</h1>
+	</div>
+
+	<div data-role="content">
+		<button id="btnModList">View the list of mods</button>
+		<button id="btnNewMod">Quick-Enter a new mod</button>
+	</div>
+</script>
+
+<script type="text/template" id="_modedit">
+	<div data-role="header" data-position="fixed">
+		<a id="btnBack" href="#" data-icon="back" data-iconpos="notext">Back</a>
+		<a class="float-left" id="btnSaveMini" href="#" data-icon="check" data-iconpos="notext">Save</a>
+		<h1>Minecraft Moddatabase - Next </h1>
+	</div>
+
+	<div data-role="content">
+
+		<form id="loginform" class="form-login" role="form">
+
+			<h1 class="list-heading">Add Mod</h1>
+
+			<input type="text" class="form-control margin10" placeholder="ModName" autofocus id="addedit-modname">
+			<input type="text" class="form-control margin10" placeholder="Modversion" id="addedit-modversion">
+			<input type="url" class="form-control margin10" placeholder="Author URL" id="addedit-author_url">
+			<input type="url" class="form-control margin10" placeholder="Forum URL" id="addedit-forum_url">
+			<input type="url" class="form-control margin10" placeholder="Download URL" id="addedit-download_url">
+			<input type="text" class="form-control margin10" placeholder="Dependencies" id="addedit-dependencies">
+			<input type="text" class="form-control margin10" placeholder="ModType"  id="addedit-modtype">
+			<input type="text" class="form-control margin10" placeholder="LastChecked" id="addedit-lastchecked">
+			<input type="text" class="form-control margin10" placeholder="ModUpdated" id="addedit-modupdated">
+
+			<button id="saveNew" class="btn btn-success btn-block">Save</button>
+			<button id="cancelNew" class="btn btn-success btn-block">Cancel</button>
+			
+		</form>
+
+	</div>
+</script>
+
+<script type="text/template" id="_modlist">
+	<div data-role="header" data-position="fixed">
+		<h1>Minecraft Moddatabase - Mod List</h1>
+		<a id="btnBack" href="#" data-icon="back" data-iconpos="notext">Back</a>
+	</div>
+
+	<div data-role="content">
+		<ul data-role="listview" class="ui-listview" id="modlistul">
+		<li>Loading...</li>
+		</ul>
+	</div>
+</script>
+
+
+<body>
+<div id="container"/>
+</body>
+</html>
+
