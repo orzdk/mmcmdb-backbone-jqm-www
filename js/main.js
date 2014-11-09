@@ -34,7 +34,7 @@ require(['domReady', 'views/HomeView', 'jqm'],
 					function(a,b){alert('push success' + a + b)},
 					function(){console.log('error')},
 					{
-						"senderID":"1062308005163",
+						"senderID":"",
 						"ecb":"onNotification"
 					}
 				);
